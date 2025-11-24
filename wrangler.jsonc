@@ -8,7 +8,9 @@
   ],
   "vars": {
     "BASIC_AUTH_USERNAME": "admin",
-    "BASIC_AUTH_PASSWORD": "your-secure-password"
+    "BASIC_AUTH_PASSWORD": "portfolio-f-t",
+    "MICROCMS_SERVICE_DOMAIN": "portfolio-astro-2025",
+    "MICROCMS_API_KEY": "your-secure-api-key"
   },
 	"assets": {
 		"binding": "ASSETS",
