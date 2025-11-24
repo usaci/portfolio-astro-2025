@@ -1,0 +1,241 @@
+---
+const { workData } = Astro.props as { workData: Work };
+import { Image } from "astro:assets";
+import Inner from "../../../layouts/Inner.astro";
+import { formatYearMonth } from "../../../lib/date";
+import type { Work } from "../../../types/work";
+import Heading from "../../ui/Heading/Heading.astro";
+import Marquee from "../index/Marquee.astro";
+const definition = [
+  {
+    label: "制作時期",
+    value: workData.createDate ? formatYearMonth(workData.createDate) : "-",
+  },
+];
+if (workData.createSpan) {
+  definition.push({
+    label: "制作期間",
+    value: workData.createSpan,
+  });
+}
+if (workData.role) {
+  definition.push({
+    label: "担当領域",
+    value: workData.role,
+  });
+}
+if (workData.link) {
+  definition.push({
+    label: "リンク",
+    value: workData.link,
+  });
+}
+if (workData.github) {
+  definition.push({
+    label: "GitHub",
+    value: workData.github,
+  });
+}
+---
+
+<section class="root">
+  <div class="wrap">
+    <Inner>
+      <Heading level="h1" class="title">{workData.title}</Heading>
+      <Marquee
+        text={`⚡️Check out my work detail of ${workData.title}`}
+        class:list={["marquee"]}
+      />
+      <figure class="eyecatch">
+        <Image
+          src={workData.eyecatch.url}
+          alt={workData.title}
+          width={workData.eyecatch.width}
+          height={workData.eyecatch.height}
+        />
+      </figure>
+      <div class="outline">
+        <aside class="header">
+          <div class="headerInner">
+            <h2 class="headerTitle">概要</h2>
+            <dl class="definition">
+              {
+                definition.map((item) =>
+                  item.label === "リンク" || item.label === "GitHub" ? (
+                    <Fragment key={item.label}>
+                      <dt>{item.label}</dt>
+                      <dd>
+                        <a
+                          href={item.value}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.value}
+                        </a>
+                      </dd>
+                    </Fragment>
+                  ) : (
+                    <Fragment key={item.label}>
+                      <dt>{item.label}</dt>
+                      <dd>{item.value}</dd>
+                    </Fragment>
+                  )
+                )
+              }
+            </dl>
+            {
+              workData.tags && workData.tags.length > 0 && (
+                <ul class="tagList">
+                  {workData.tags.map((tag) => (
+                    <li class="tag">{tag.name}</li>
+                  ))}
+                </ul>
+              )
+            }
+          </div>
+        </aside>
+        <div class="headerContent">
+          <p class="content">{workData.outline}</p>
+        </div>
+      </div>
+      <div class="contentBody">
+        {
+          workData.points &&
+            workData.points.length > 0 &&
+            workData.points.map((point) => (
+              <div class="contentBodyPoint">
+                <h3 class="contentBodyPointTitle">{point.headline}</h3>
+                <p class="contentBodyPointContent">{point.content}</p>
+              </div>
+            ))
+        }
+      </div>
+    </Inner>
+  </div>
+</section>
+
+<style>
+  :global(.title) {
+    margin-block-end: calc(40 * var(--to-rem));
+    @media (width <= 768px) {
+      margin-block-end: calc(16 * var(--to-rem));
+    }
+  }
+  :global(.marquee) {
+    margin-block-end: calc(40 * var(--to-rem));
+    @media (width <= 768px) {
+      margin-block-end: calc(16 * var(--to-rem));
+    }
+  }
+
+  .eyecatch {
+    block-size: calc(450 * var(--to-rem));
+    inline-size: 100svi;
+    transform: translateX(calc((50% - 50svi) * -1));
+    overflow: clip;
+    margin-inline: auto;
+    margin-block-end: calc(40 * var(--to-rem));
+    @media (width <= 768px) {
+      margin-block-end: calc(24 * var(--to-rem));
+    }
+  }
+
+  .outline {
+    display: grid;
+    grid-template-columns: calc(320 * var(--to-rem)) 1fr;
+    gap: calc(40 * var(--to-rem));
+    padding-block-end: calc(40 * var(--to-rem));
+    border-block-end: 1px solid var(--color-lime);
+    max-inline-size: calc(900 * var(--to-rem));
+    margin-inline: auto;
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(16 * var(--to-rem));
+    font-size: var(--fluid-size);
+    @media (width <= 768px) {
+      grid-template-columns: 1fr;
+      row-gap: calc(24 * var(--to-rem));
+      padding-block-end: calc(24 * var(--to-rem));
+    }
+  }
+
+  .headerTitle {
+    --fluid-min: calc(24 * var(--to-rem));
+    --fluid-max: calc(28 * var(--to-rem));
+    font-size: var(--fluid-size);
+    font-weight: 500;
+    margin-bottom: calc(24 * var(--to-rem));
+    &::before {
+      content: "[";
+    }
+    &::after {
+      content: "]";
+    }
+  }
+
+  .definition {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: calc(20 * var(--to-rem));
+    margin-block-end: calc(20 * var(--to-rem));
+    & dt {
+      font-size: var(--fluid-size);
+      font-weight: 500;
+    }
+    & dd {
+      font-size: var(--fluid-size);
+    }
+  }
+
+  .contentBody {
+    grid-column: 1 / -1;
+    max-inline-size: calc(900 * var(--to-rem));
+    margin-inline: auto;
+  }
+
+  .contentBodyPoint {
+    display: grid;
+    grid-template-columns: calc(320 * var(--to-rem)) 1fr;
+    gap: calc(40 * var(--to-rem));
+    padding-block: calc(40 * var(--to-rem));
+    border-block-end: 1px solid var(--color-lime);
+
+    @media (width <= 768px) {
+      grid-template-columns: 1fr;
+      row-gap: calc(16 * var(--to-rem));
+      padding-block: calc(24 * var(--to-rem));
+    }
+  }
+
+  .contentBodyPointTitle {
+    --fluid-min: calc(20 * var(--to-rem));
+    --fluid-max: calc(24 * var(--to-rem));
+    font-size: var(--fluid-size);
+    font-weight: 500;
+    &::before {
+      content: "[";
+    }
+    &::after {
+      content: "]";
+    }
+  }
+  .contentBodyPointContent {
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(16 * var(--to-rem));
+    font-size: var(--fluid-size);
+    line-height: 1.75;
+  }
+
+  .tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(8 * var(--to-rem));
+  }
+  .tag {
+    padding: calc(4 * var(--to-rem)) calc(12 * var(--to-rem));
+    border-radius: calc(infinity * 1px);
+    border: 1px solid var(--color-lime);
+    inline-size: fit-content;
+    font-size: var(--fluid-size);
+    font-weight: 500;
+  }
+</style>

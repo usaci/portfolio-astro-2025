@@ -1,0 +1,66 @@
+@property --viewport-token-min {
+  syntax: "<length>";
+  initial-value: 375px;
+  inherits: false;
+}
+
+@property --viewport-token-max {
+  syntax: "<length>";
+  initial-value: 1440px;
+  inherits: false;
+}
+
+/* リキッドレイアウトの計算式 */
+@property --fluid-scale {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+/* clamp()を使用したリキッドレイアウトの基本式 */
+@property --fluid-min {
+  syntax: "<length>";
+  initial-value: 16px;
+  inherits: false;
+}
+
+@property --fluid-max {
+  syntax: "<length>";
+  initial-value: 20px;
+  inherits: false;
+}
+
+@property --100svi {
+    syntax: "<length>";
+  initial-value: 100svi;
+  inherits: false;
+}
+
+/* リキッドレイアウトの計算式（最大値に達した後も拡大） */
+@property --fluid-size {
+  syntax: "<length>";
+  initial-value: 16px;
+  inherits: false;
+}
+
+@property --container-width-wide {
+  syntax: "<length>";
+  initial-value: 1320px;
+  inherits: false;
+}
+
+@property --container-width-normal {
+  syntax: "<length>";
+  initial-value: 1200px;
+  inherits: false;
+}
+
+ @property --leading-trim {
+  syntax: "<length>";
+  initial-value: 0;
+  inherits: false;
+ }
+
+ :root {
+  --leading-trim: calc((1em - 1lh) / 2);
+ }

@@ -1,0 +1,53 @@
+---
+const { class: className, text: marqueeText = "🤟Welcome to my portfolio" } =
+  Astro.props as { class: string; text: string };
+---
+
+<p class:list={[className, "root"]} aria-label={marqueeText}>
+  {
+    Array.from({ length: 10 }).map(() => (
+      <span class="marquee-text" aria-hidden="true">
+        {marqueeText}
+      </span>
+    ))
+  }
+</p>
+<style>
+  .root {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(24 * var(--to-rem));
+    font-size: var(--fluid-size);
+    font-family: var(--font-geist);
+    line-height: 1;
+    font-weight: 500;
+    padding: calc(16 * var(--to-rem));
+    border-radius: calc(infinity * 1px);
+    border: 1px solid var(--color-lime);
+    color: var(--color-lime);
+    overflow: hidden;
+    @media (width <= 960px) {
+      padding: calc(8 * var(--to-rem)) calc(16 * var(--to-rem));
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .marquee-text {
+    white-space: nowrap;
+    will-change: transform;
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+    animation: marquee 8000ms linear infinite;
+  }
+</style>

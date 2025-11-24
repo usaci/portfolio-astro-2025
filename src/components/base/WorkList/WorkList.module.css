@@ -1,0 +1,114 @@
+.toggleList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  inline-size: 100%;
+  margin-block-end: calc(40 * var(--to-rem));
+  @media (width <= 768px) {
+    margin-block-end: calc(24 * var(--to-rem));
+  }
+}
+
+.toggleButton {
+  position: relative;
+  --fluid-min: calc(16 * var(--to-rem));
+  --fluid-max: calc(18 * var(--to-rem));
+  display: flex;
+  font-size: var(--fluid-size);
+  padding: calc(tan(atan2(8px, var(--viewport-token-max))) * 100svi) calc(tan(atan2(12px, var(--viewport-token-max))) * 100svi);
+  transition: color 300ms;
+  column-gap: 4px;
+  border: none;
+  &::before {
+    content: "⚫︎";
+    display: inline-block;
+  }
+
+  &::after {
+    content: "";
+    display: block flow-root;
+    inline-size: 100%;
+    block-size: 4px;
+    background-color: var(--color-lime);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 300ms var(--ease-out-quad);
+  }
+  &.active {
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (width <= 768px) {
+    --fluid-min: calc(14 * var(--to-rem));
+    --fluid-max: calc(16 * var(--to-rem));
+    font-size: var(--fluid-size);
+    padding: 8px 16px;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+.list {
+  display: grid block;
+  grid-template-columns: repeat(
+    2,
+    1fr
+  );
+  gap: calc(tan(atan2(20px, var(--container-width-normal))) * 100cqi);
+  inline-size: 100%;
+  @media (width > 1280px) {
+    grid-template-columns: repeat(4, 1fr);
+
+    & li:nth-child(1), 
+    & li:nth-child(2),
+    & li:nth-child(5n-2) {
+      grid-column: span 2;
+      grid-row: span 2;
+      @media(width <= 768px) {
+        grid-column: 1;
+        grid-row: auto;
+      }
+    }
+  }
+
+  @media (width <= 768px) {
+    grid-template-columns: 1fr;
+    row-gap: calc(28 * var(--to-rem));
+  }
+
+  @media (any-hover: hover) {
+    &[aria-busy="false"] {
+    &:hover > li {
+        filter: saturate(0) brightness(0.5);
+      }
+    }
+  }
+
+      @media (any-hover: hover) {
+      &[aria-busy="false"] {
+
+        & li {
+          transition: filter 300ms;
+        }
+        & li:has(a:hover) {
+          filter: saturate(1);
+        }
+      }
+    }
+
+}
+
+.noWorks {
+    --fluid-min: calc(20 * var(--to-rem));
+    --fluid-max: calc(28 * var(--to-rem));
+    font-size: var(--fluid-size);
+}

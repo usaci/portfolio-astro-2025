@@ -1,0 +1,57 @@
+.root {
+  display: block flow-root;
+  position: relative;
+  border-radius: 12px 12px 12px 0;
+  overflow: clip;
+  @media (any-hover: hover) {
+    &:hover {
+      .eyecatch img {
+        scale: 1.1;
+      }
+    }
+  }
+}
+
+.text {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+}
+
+.category {
+  inline-size: fit-content;
+  background-color: var(--color-cobalt);
+  color: var(--color-lime);
+}
+
+.title {
+  --fluid-min: 20px;
+  --fluid-max: 24px;
+  font-size: var(--fluid-size);
+  inline-size: fit-content;
+  background-color: var(--color-cobalt);
+  color: var(--color-lime);
+}
+
+.eyecatch {
+  position: relative;
+  overflow: clip;
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+  aspect-ratio: 1;
+  background-color: var(--color-lime);
+  background-image: linear-gradient(-40deg, var(--color-cobalt) 25%, transparent 25%, transparent 50%, var(--color-cobalt) 50%, var(--color-cobalt) 75%, transparent 75%, transparent);
+  background-size: 30% 5%;
+  animation: move-stripes 5000ms linear infinite;
+}
+
+
+@keyframes move-stripes {
+  0% {
+    background-position: 100% -100%;
+  }
+  100% {
+    background-position: -100% 100%;
+  }
+}

@@ -1,0 +1,5 @@
+:root {
+  --gradient-gradient: url('/bg_gradient.png');
+  --gradient-hologram: url('/bg_hologram.png');
+  --gradient-hologram-vertical: url('/bg_hologram-sp.png');
+}

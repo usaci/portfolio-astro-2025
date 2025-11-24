@@ -1,0 +1,42 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div class:list={[className, "root"]}>
+  <div class="container">
+    <div class="inner">
+      <slot />
+    </div>
+  </div>
+</div>
+<style>
+  .root {
+    --_padding-inline: 40px;
+    --fluid-min: 16px;
+    --fluid-max: 120px;
+    --_gutters-inline: var(--fluid-size);
+    display: grid;
+    grid-template-columns: var(--_gutters-inline) 1fr var(--_gutters-inline);
+    grid-template-rows:
+      calc(60 * var(--to-rem))
+      1fr
+      calc(60 * var(--to-rem))
+      auto;
+    grid-template-areas:
+      ". . ."
+      ". main ."
+      ". . .";
+    overflow-inline: hidden;
+    @media (width <= 960px) {
+      grid-template-rows:
+        calc(40 * var(--to-rem))
+        1fr
+        calc(40 * var(--to-rem))
+        auto;
+    }
+    & .container {
+      container-type: inline-size;
+      grid-area: main;
+    }
+  }
+</style>

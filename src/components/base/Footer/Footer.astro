@@ -1,0 +1,37 @@
+<footer class="root">
+  <div class="inner">
+    <small class="copy">&copy;2025 Takuya Fujikawa Portfolio</small>
+  </div>
+</footer>
+<style>
+  .root {
+    position: relative;
+    container-type: inline-size;
+    container-name: header;
+    padding-block: calc(tan(atan2(40px, var(--viewport-token-max))) * 100svi);
+    padding-inline: calc(tan(atan2(120px, var(--viewport-token-max))) * 100svi);
+    @media (width <= 768px) {
+      padding-block: 40px;
+    }
+  }
+  .inner {
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(64 * var(--to-rem));
+    --_gutters-inline: var(--fluid-size);
+    display: grid block;
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+    padding-inline: var(--_gutters-inline);
+    align-items: center;
+    block-size: 100%;
+  }
+
+  .copy {
+    --fluid-min: 12px;
+    --fluid-max: 16px;
+    font-size: var(--fluid-size);
+    text-align: center;
+    font-family: var(--font-geist);
+    text-transform: uppercase;
+  }
+</style>

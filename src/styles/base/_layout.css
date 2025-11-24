@@ -1,0 +1,61 @@
+:where(body) {
+  color: var(--color-lime);
+  background: var(--color-cobalt);
+  font-size: var(--fluid-size);
+  font-family: "Geist Variable", "Noto Sans JP Variable", sans-serif;
+  letter-spacing: -0.04em;
+  overflow-wrap: initial;
+  overflow-inline: clip;
+  text-rendering: optimizeSpeed;
+  /* @media (prefers-color-scheme: light) {
+    color: var(--color-monotone-black);
+    background-color:  var(--color-monotone-white);
+  } */
+  &::selection {
+    color: var(--color-monotone-black);
+    background-color: var(--color-cobalt);
+  }
+   
+}
+
+*,
+::before,
+::after {
+  --fluid-min: calc(14 * var(--to-rem));
+  --fluid-max: calc(16 * var(--to-rem));
+  --fluid-scale: calc(
+    tan(
+        atan2(
+          (var(--100svi) - var(--viewport-token-min)),
+          (var(--viewport-token-max) - var(--viewport-token-min))
+        )
+      ) * var(--fluid-slope) * 16
+  );
+  --fluid-factor: calc(
+    (var(--fluid-max) - var(--fluid-min)) *
+      tan(
+        atan2(
+          (var(--100svi) - var(--viewport-token-min)),
+          (var(--viewport-token-max) - var(--viewport-token-min))
+        )
+      )
+  );
+  --fluid-size-preferred: calc(
+    var(--fluid-min) + (var(--fluid-max) - var(--fluid-min)) *
+      var(--fluid-slope)
+  );
+  --fluid-slope: calc(
+    tan(
+      atan2(
+        (var(--100svi) - var(--viewport-token-min)),
+        (var(--viewport-token-max) - var(--viewport-token-min))
+      )
+    )
+  );
+
+  --fluid-size: clamp(
+    var(--fluid-min),
+    var(--fluid-size-preferred),
+    calc(var(--fluid-max) + var(--fluid-scale) * 1px)
+  );
+}

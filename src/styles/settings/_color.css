@@ -1,0 +1,23 @@
+@property --color-monotone-black {
+  syntax: "<color>";
+  initial-value: #000;
+  inherits: false;
+}
+
+@property --color-monotone-white {
+  syntax: "<color>";
+  initial-value: #E4E4E4;
+  inherits: false;
+}
+
+@property --color-cobalt {
+  syntax: "<color>";
+  initial-value: oklch(0.4718 0.2998 264.21);
+  inherits: false;
+}
+
+@property --color-lime {
+  syntax: "<color>";
+  initial-value: oklch(0.8897 0.2015 125.86);
+  inherits: false;
+}

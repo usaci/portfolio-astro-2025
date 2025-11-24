@@ -1,0 +1,122 @@
+---
+import Drawer from "../../ui/Drawer/Drawer";
+---
+
+<header class="root">
+  <div class="inner">
+    <a href="/" class="logo">Takuya Fujikawa</a>
+    <nav class="navigation">
+      <ul>
+        <li>
+          <a href="/works">Works</a>
+        </li>
+        <li>
+          <a href="/profile">Profile</a>
+        </li>
+      </ul>
+    </nav>
+    <Drawer client:load />
+  </div>
+</header>
+<style>
+  .root {
+    position: sticky;
+    inset-block-start: 0;
+    container-type: inline-size;
+    container-name: header;
+    /* block-size: calc(tan(atan2(80px, var(--viewport-token-max))) * 100svi);
+  @media (width <= 960px) {
+    block-size: calc(tan(atan2(50px, var(--viewport-token-min))) * 100svi);
+  } */
+    z-index: 10;
+  }
+
+  .inner {
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(64 * var(--to-rem));
+    --_gutters-inline: var(--fluid-size);
+    display: grid block;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    padding-inline: var(--_gutters-inline);
+    align-items: center;
+    block-size: 100%;
+  }
+
+  .logo {
+    display: block flow-root;
+    inline-size: fit-content;
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(24 * var(--to-rem));
+    transition: opacity 300ms;
+    font-size: var(--fluid-size);
+    font-family: var(--font-geist);
+    line-height: 1;
+    & span {
+      @container (width <= 960px) {
+        display: block flow-root;
+      }
+    }
+
+    &::before {
+      content: "[";
+    }
+
+    &::after {
+      content: "]";
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .navigation {
+    margin-inline-end: calc(
+      tan(atan2(40px, var(--viewport-token-max))) * 100svi
+    );
+  }
+
+  .navigation > ul {
+    display: flex;
+    align-items: center;
+    gap: calc(tan(atan2(40px, var(--viewport-token-max))) * 100svi);
+  }
+
+  .navigation > ul > li {
+    --fluid-min: calc(18 * var(--to-rem));
+    --fluid-max: calc(20 * var(--to-rem));
+    font-size: var(--fluid-size);
+    > a {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: -10px;
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--color-cobalt);
+        transition: scale 200ms;
+        scale: 0;
+        mix-blend-mode: difference; /* 差の絶対値 */
+      }
+
+      /* ホバー時に表示 */
+      &:hover::after {
+        scale: 1;
+      }
+    }
+  }
+
+  @container (width <= 960px) {
+    .navigation > ul {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,5 @@
+:root {
+  --to-rem: calc(tan(atan2(1px, 16px)) * 1rem);
+  --font-geist: "Geist Variable", sans-serif;
+  --font-noto-sans-jp: "Noto Sans JP Variable", sans-serif;
+}

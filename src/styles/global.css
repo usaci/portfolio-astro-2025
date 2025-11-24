@@ -1,0 +1,7 @@
+@import './settings/_animation.css' layer(settings);
+@import './settings/_color.css' layer(settings);
+@import './settings/_gradient.css' layer(settings);
+@import './settings/_shape.css' layer(settings);
+@import './settings/_sizes.css' layer(settings);
+@import './settings/_typography.css' layer(settings);
+@import './base/_layout.css' layer(base);

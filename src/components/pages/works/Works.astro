@@ -1,0 +1,48 @@
+---
+import Inner from "../../../layouts/Inner.astro";
+import { client } from "../../../lib/contents";
+import WorkList from "../../base/WorkList/WorkList";
+import Heading from "../../ui/Heading/Heading.astro";
+import Marquee from "../index/Marquee.astro";
+const blogResponse = await client.getList({
+  endpoint: "blogs",
+  queries: {
+    limit: 100,
+  },
+});
+
+const categoryResponse = await client.getList({
+  endpoint: "categories",
+});
+
+export const prerender = false;
+---
+
+<section class="root">
+  <div class="wrap">
+    <Inner>
+      <Heading level="h2" class="title">Works</Heading>
+      <Marquee text="🤟Check out my works" class:list={["marquee"]} />
+      <WorkList
+        workData={blogResponse.contents}
+        limit={10}
+        categoryData={categoryResponse.contents}
+        client:load
+      />
+    </Inner>
+  </div>
+</section>
+<style>
+  :global(.title) {
+    margin-block-end: calc(40 * var(--to-rem));
+    @media (width <= 768px) {
+      margin-block-end: calc(16 * var(--to-rem));
+    }
+  }
+  :global(.marquee) {
+    margin-block-end: calc(40 * var(--to-rem));
+    @media (width <= 768px) {
+      margin-block-end: calc(16 * var(--to-rem));
+    }
+  }
+</style>

@@ -1,0 +1,226 @@
+.drawer {
+  position: fixed;
+  inset: 0;
+  inline-size: 100%;
+  background-color: var(--color-lime);
+  color: var(--color-cobalt);
+  padding-block-end: 40px;
+  z-index: 20;
+  transition: transform 400ms var(--ease-out-expo);
+  block-size: fit-content;
+  border-radius: 0 0 12px 12px;
+  &[aria-hidden="true"] {
+    transform: translateY(-100%);
+  }
+
+  &[aria-hidden="false"] {
+    display: block flow-root;
+    transform: translateY(0%);
+
+  }
+
+  & .head {
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(64 * var(--to-rem));
+    --_gutters-inline: var(--fluid-size);
+    display: grid;
+    padding-inline: var(--_gutters-inline);
+    grid-template-columns: 1fr auto auto;
+    justify-content: space-between;
+    align-items: center;
+    block-size: 100%;
+    margin-block-end: calc(24 * var(--to-rem));
+  }
+
+  & .trigger {
+    background-color: var(--color-cobalt);
+    color: var(--color-lime);
+    & .iconWrap {
+      &::before,
+      &::after {
+        background-color: var(--color-lime);
+      }
+      & .icon {
+        background-color: var(--color-lime);
+      }
+    }
+  }
+  & .inner {
+    padding-inline: var(--_gutters-inline);
+  }
+
+  & .list {
+    --_gutters-inline: var(--fluid-size);
+    padding-inline: var(--_gutters-inline);
+    & a {
+      --fluid-min: calc(32 * var(--to-rem));
+      --fluid-max: calc(36 * var(--to-rem));
+      font-size: var(--fluid-size);
+      font-family: var(--font-geist);
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: -10px;
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--color-lime);
+        transition: scale 200ms;
+        scale: 0;
+        mix-blend-mode: difference; /* 差の絶対値 */
+      }
+
+      /* ホバー時に表示 */
+      &:hover::after {
+        scale: 1;
+      }
+    }
+    
+  }
+
+}
+.drawerBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms, background-color 300ms;
+}
+
+.drawer[aria-hidden="false"] ~ .drawerBackdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.logo {
+  display: block flow-root;
+  inline-size: fit-content;
+  --fluid-min: calc(16 * var(--to-rem));
+  --fluid-max: calc(36 * var(--to-rem));
+  font-size: var(--fluid-size);
+  font-family: var(--font-geist);
+  line-height: 1;
+  & span {
+    @container (width <= 960px) {
+      display: block flow-root;
+    }
+  }
+}
+
+.trigger {
+  --_trigger-size: 80px;
+  --_line-offset-y: 6px;
+  position: relative;
+  z-index: 1;
+  container-type: inline-size;
+  container-name: trigger;
+  display: grid block;
+  justify-content: center;
+  align-items: center;
+  block-size: var(--_trigger-size);
+  aspect-ratio: 1;
+  background-color: var(--color-lime);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: var(--color-cobalt);
+  align-self: self-start;
+  border: none;
+  padding: 0;
+  border-radius: 0 0px 12px 12px;
+  @media (width <= 960px) {
+    max-block-size: calc(50 * var(--to-rem));
+    --_line-offset-y: 5px;
+    --_trigger-size: 50px;
+  }
+  & .text {
+    text-transform: uppercase;
+    align-self: start;
+  }
+
+  & .iconWrap {
+    position: relative;
+    display: block flow-root;
+    inline-size: calc(tan(atan2(28px, var(--_trigger-size))) * 100cqi);
+    justify-self: center;
+    align-self: self-end;
+    aspect-ratio: 1;
+    @media (width <= 960px) {
+      inline-size: calc(tan(atan2(28px, 70px)) * 100cqi);
+    }
+    &::before,
+    &::after {
+      content: "";
+      display: block flow-root;
+      /* block-size: calc(tan(atan2(3px, var(--_trigger-size))) * 100cqi); */
+      block-size: 3px;
+      background-color: var(--color-cobalt);
+      will-change: transform, opacity, inline-size;
+      transform-origin: center;
+      transition: transform 400ms var(--ease-out-quad);
+      @media (width <= 960px) {
+        block-size: 2px;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      inset-block-start: calc((var(--_line-offset-y)));
+      inline-size: 100%;
+    }
+
+    &::after {
+      position: absolute;
+      inset-block-start: calc((var(--_line-offset-y) * 3));
+      inline-size: 50%;
+    }
+    & .icon {
+      position: absolute;
+      display: block flow-root;
+      /* inline-size: calc(tan(atan2(21px, var(--_trigger-size))) * 100cqi); */
+      /* block-size: calc(tan(atan2(3px, var(--_trigger-size))) * 100cqi); */
+      inline-size: 75%;
+      block-size: 3px;
+      inset-block-start: calc((var(--_line-offset-y) * 2));
+      background-color: var(--color-cobalt);
+      will-change: transform, opacity;
+      transition: opacity 100ms;
+      @media (width <= 960px) {
+        inline-size: calc(tan(atan2(21px, 70px)) * 100cqi);
+        block-size: 2px;
+      }
+    }
+  }
+
+  &[aria-expanded="true"] {
+    & .iconWrap::before {
+      transform: translate(
+          0%,
+          calc(tan(atan2(var(--_line-offset-y), var(--_trigger-size))) * 100cqi)
+        )
+        rotate(45deg);
+    }
+
+    & .iconWrap::after {
+      inline-size: 100%;
+      transform: translate(
+          0%,
+          calc(
+            tan(atan2(var(--_line-offset-y) * -1, var(--_trigger-size))) *
+              100cqi
+          )
+        )
+        rotate(-45deg);
+    }
+    & .icon {
+      opacity: 0;
+    }
+  }
+}
