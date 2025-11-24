@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.11",
     "@astrojs/react": "^4.4.2",
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/noto-sans-jp": "^5.2.9",
@@ -22,5 +23,8 @@
     "react-dom": "^19.2.0",
     "shuffle-text": "^0.5.0",
     "swr": "^2.3.6"
+  },
+  "devDependencies": {
+    "wrangler": "^4.50.0"
   }
 }
