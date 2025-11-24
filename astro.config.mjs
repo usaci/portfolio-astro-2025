@@ -10,4 +10,9 @@ export default defineConfig({
   integrations: [react()],
   output: "server",
   adapter: cloudflare(),
+  vite: {
+    define: {
+        'process.env.MY_SECRET_ENV': JSON.stringify(process.env.MY_SECRET_ENV),
+    },
+},
 });
