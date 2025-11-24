@@ -1,0 +1,218 @@
+---
+
+---
+
+<div class="root">
+  <div class="container">
+    <div class="inner">
+      <div class="card">
+        <div class="cardTitleInner">
+          <p class="barcode" aria-hidden="true">TakuyaFujikawa</p>
+          <div class="cardTitle">
+            <h1 class="title">
+              <span class="break geist">Takuya Fujikawa</span>
+              <span class="break">/</span>
+              <span class="break">藤川 拓也</span>
+            </h1>
+            <p class="subTitle">
+              神奈川県出身。
+              2022年より不動産会社でインハウスWebデザイナーとしてキャリアをスタート。その後、デザイン制作会社でのアルバイトデザイナー、受託開発会社でのUIデザイナー（正社員・業務委託）を経験し、2024年12月から2025年8月まではWeb制作会社でフロントエンドエンジニアとして勤務。
+              現在はフリーランスのUIデザイナー／フロントエンドエンジニアとして、デザインから実装まで一貫した制作を行っています。
+            </p>
+            <div class="logo">
+              <img src="/composite.svg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <dl class="definition">
+          <dt>field</dt>
+          <dd>UI Design, Web Design, Front-end-engineering</dd>
+          <dt>language</dt>
+          <dd>HTML, CSS, TypeScript, JavaScript, PHP</dd>
+          <dt>framework</dt>
+          <dd>React, Next.js, Astro, WordPress</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .root {
+    margin-block-start: calc(60 * var(--to-rem));
+    @media (width <= 960px) {
+      margin-block-start: calc(40 * var(--to-rem));
+    }
+    & .inner {
+      display: grid;
+      grid-template-columns:
+        calc(tan(atan2(782px, var(--container-width-normal))) * 100cqi)
+        1fr;
+      @media (width <= 960px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    & :global(.marquee) {
+      grid-area: marquee;
+    }
+    & .card {
+      container-type: inline-size;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      background-color: var(--color-lime);
+      color: var(--color-cobalt);
+      padding: calc(20 * var(--to-rem)) calc(12 * var(--to-rem));
+      border-radius: 20px;
+      &:nth-child(1 of .card) {
+        padding-inline-start: calc(12 * var(--to-rem));
+        padding-inline-end: calc(20 * var(--to-rem));
+        @media (width <= 960px) {
+          padding: calc(40 * var(--to-rem)) calc(20 * var(--to-rem)) 0;
+          border-block-end: 1px dashed var(--color-cobalt);
+          border-inline-start: none;
+        }
+      }
+      &:nth-child(2 of .card) {
+        padding-inline-start: calc(20 * var(--to-rem));
+        border-inline-start: 1px dashed var(--color-cobalt);
+        &::before {
+          content: "";
+          position: absolute;
+          display: block flow-root;
+          inline-size: 20px;
+          aspect-ratio: 1;
+          background-color: var(--color-cobalt);
+          inset-inline-end: 8px;
+          inset-block-start: 8px;
+          border-radius: calc(infinity * 1px);
+        }
+        @media (width <= 960px) {
+          padding: calc(40 * var(--to-rem)) calc(20 * var(--to-rem));
+          border-inline-start: none;
+        }
+      }
+    }
+
+    & .cardTitle {
+      display: grid;
+      grid-auto-flow: row;
+      block-size: auto;
+      row-gap: calc(24 * var(--to-rem));
+      @media (width <= 960px) {
+        row-gap: calc(16 * var(--to-rem));
+      }
+    }
+
+    & .cardTitleInner {
+      display: grid;
+      inline-size: 100%;
+      grid-template-columns:
+        auto
+        1fr;
+      align-items: center;
+      column-gap: calc(24 * var(--to-rem));
+      block-size: 100%;
+      @media (width <= 960px) {
+        row-gap:;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    & .barcode {
+      --fluid-min: calc(70 * var(--to-rem));
+      --fluid-max: calc(76 * var(--to-rem));
+      font-size: var(--fluid-size);
+      font-family: "Libre Barcode 128", sans-serif;
+      font-weight: 500;
+      line-height: 1;
+      writing-mode: vertical-rl;
+      margin-block: var(--leading-trim);
+      @media (width <= 960px) {
+        writing-mode: horizontal-tb;
+      }
+    }
+
+    & .logo {
+      position: absolute;
+      inset-inline-end: calc(20 * var(--to-rem));
+      inset-block-end: calc(20 * var(--to-rem));
+      @media (width <= 960px) {
+        position: static;
+        align-self: baseline;
+        justify-self: end;
+        margin-block-start: calc(40 * var(--to-rem));
+        inline-size: calc(
+          tan(atan2(200px, var(--viewport-token-min))) * 100cqi
+        );
+      }
+    }
+
+    & .title {
+      display: inline-flex;
+      gap: 4px;
+      --fluid-min: calc(28 * var(--to-rem));
+      --fluid-max: calc(36 * var(--to-rem));
+      font-size: var(--fluid-size);
+      line-height: 1;
+      font-weight: 500;
+      margin: 0;
+      margin-block-end: calc(16 * var(--to-rem));
+      @media (width <= 960px) {
+        margin-block-end: calc(8 * var(--to-rem));
+        flex-direction: column;
+      }
+      & .break {
+        display: block;
+      }
+
+      & .geist {
+        font-family: var(--font-geist);
+      }
+    }
+
+    & .subTitle {
+      --fluid-min: calc(14 * var(--to-rem));
+      --fluid-max: calc(16 * var(--to-rem));
+      font-size: var(--fluid-size);
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    & .definition {
+      display: flex;
+      flex-direction: column;
+      & dt {
+        --fluid-min: calc(20 * var(--to-rem));
+        --fluid-max: calc(24 * var(--to-rem));
+        margin-bottom: calc(16 * var(--to-rem));
+        font-size: var(--fluid-size);
+        font-family: var(--font-geist);
+        line-height: 1;
+        font-weight: 500;
+        @media (width <= 960px) {
+          margin-bottom: calc(8 * var(--to-rem));
+        }
+        &::before {
+          content: "[";
+        }
+        &::after {
+          content: "]";
+        }
+      }
+      & dd {
+        --fluid-min: calc(16 * var(--to-rem));
+        --fluid-max: calc(18 * var(--to-rem));
+        &:not(:last-child) {
+          margin-bottom: calc(40 * var(--to-rem));
+          @media (width <= 960px) {
+            margin-bottom: calc(20 * var(--to-rem));
+          }
+        }
+      }
+    }
+  }
+</style>

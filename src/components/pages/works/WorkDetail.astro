@@ -108,6 +108,40 @@ if (workData.github) {
                 <p class="contentBodyPointContent">{point.content}</p>
               </div>
             ))
+        }--- import Footer from "../../components/base/Footer/Footer.astro";
+        import Header from "../../components/base/Header/Header.astro"; import
+        Works from "../../components/pages/works/Works.astro"; import Layout
+        from "../../layouts/Layout.astro"; import Main from
+        "../../layouts/Main.astro"; ---
+
+        <Layout
+          title="制作実績｜Takuya Fujikawa Portfolio"
+          description="UIデザイナー・Webエンジニアの藤川拓也のポートフォリオサイトの制作実績一覧です。"
+          robots="noindex, nofollow"
+        >
+          <Header />
+          <Main>
+            <Works />
+          </Main>
+          <Footer />
+        </Layout>
+      </div>
+      <div class="gallery">
+        {
+          workData.galleries &&
+            workData.galleries.length > 0 &&
+            workData.galleries.map((gallery) =>
+              gallery.images.map((image) => (
+                <figure class="galleryImage">
+                  <Image
+                    src={image.url}
+                    alt={image.url}
+                    width={image.width}
+                    height={image.height}
+                  />
+                </figure>
+              ))
+            )
         }
       </div>
     </Inner>
@@ -237,5 +271,22 @@ if (workData.github) {
     inline-size: fit-content;
     font-size: var(--fluid-size);
     font-weight: 500;
+  }
+
+  .gallery {
+    margin-block-start: calc(40 * var(--to-rem));
+    @media (width <= 768px) {
+      margin-block-start: calc(24 * var(--to-rem));
+    }
+  }
+
+  .galleryImage {
+    margin-block-end: calc(24 * var(--to-rem));
+    @media (width <= 768px) {
+      margin-block-end: calc(16 * var(--to-rem));
+    }
+  }
+  .galleryImage:last-child {
+    margin-block-end: 0;
   }
 </style>

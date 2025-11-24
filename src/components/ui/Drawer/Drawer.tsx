@@ -138,6 +138,7 @@ export default function Drawer() {
                 <a href="/profile">Profile</a>
               </li>
             </ul>
+            <p className={styles.barcode} aria-hidden="true">TakuyaFujikawa</p>
           </div>
         </div>
       </div>

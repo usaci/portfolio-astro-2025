@@ -23,13 +23,16 @@
     --fluid-min: calc(16 * var(--to-rem));
     --fluid-max: calc(64 * var(--to-rem));
     --_gutters-inline: var(--fluid-size);
-    display: grid;
-    padding-inline: var(--_gutters-inline);
-    grid-template-columns: 1fr auto auto;
+    display: grid block;
+    grid-template-columns: repeat(2, auto);
     justify-content: space-between;
+    padding-inline: var(--_gutters-inline);
     align-items: center;
     block-size: 100%;
     margin-block-end: calc(24 * var(--to-rem));
+    @media (width <= 960px) {
+      margin-block-end: calc(16 * var(--to-rem));
+    }
   }
 
   & .trigger {
@@ -51,7 +54,7 @@
 
   & .list {
     --_gutters-inline: var(--fluid-size);
-    padding-inline: var(--_gutters-inline);
+    margin-block-end: calc(40 * var(--to-rem));
     & a {
       --fluid-min: calc(32 * var(--to-rem));
       --fluid-max: calc(36 * var(--to-rem));
@@ -99,17 +102,43 @@
   pointer-events: auto;
 }
 
+.barcode {
+  --fluid-min: calc(70 * var(--to-rem));
+  --fluid-max: calc(76 * var(--to-rem));
+  font-size: var(--fluid-size);
+  font-family: "Libre Barcode 128", sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  margin-block: var(--leading-trim);
+}
+
 .logo {
   display: block flow-root;
   inline-size: fit-content;
   --fluid-min: calc(16 * var(--to-rem));
-  --fluid-max: calc(36 * var(--to-rem));
+  --fluid-max: calc(24 * var(--to-rem));
+  transition: opacity 300ms;
   font-size: var(--fluid-size);
   font-family: var(--font-geist);
   line-height: 1;
   & span {
     @container (width <= 960px) {
       display: block flow-root;
+    }
+  }
+
+  &::before {
+    content: "[";
+  }
+
+  &::after {
+    content: "]";
+  }
+
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.8;
     }
   }
 }

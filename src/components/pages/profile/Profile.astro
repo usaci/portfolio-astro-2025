@@ -1,0 +1,16 @@
+---
+import Inner from "../../../layouts/Inner.astro";
+import Heading from "../../ui/Heading/Heading.astro";
+import Marquee from "../index/Marquee.astro";
+import ProfileBox from "./ProfileBox.astro";
+---
+
+<section class="root">
+  <div class="wrap">
+    <Inner>
+      <Heading level="h1" class="title">Profile</Heading>
+      <Marquee text={`🤟Check out my profile`} class:list={["marquee"]} />
+      <ProfileBox />
+    </Inner>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import Footer from "../components/base/Footer/Footer.astro";
+import Header from "../components/base/Header/Header.astro";
+import Heading from "../components/ui/Heading/Heading.astro";
+import Inner from "../layouts/Inner.astro";
+import Layout from "../layouts/Layout.astro";
+import Main from "../layouts/Main.astro";
+---
+
+<Layout
+  title="Takuya Fujikawa Portfolio"
+  description="UIデザイナー・Webエンジニアの藤川拓也のポートフォリオサイトです。"
+  robots="noindex, nofollow"
+>
+  <Header />
+  <Main>
+    <Inner>
+      <Heading level="h1" class="title">404 Not Found</Heading>
+      <p class="message">お探しのページは見つかりませんでした。</p>
+      <a href="/" class="button"> トップページへ戻る </a>
+    </Inner>
+  </Main>
+  <Footer />
+</Layout>
+<style>
+  .message {
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(18 * var(--to-rem));
+    font-size: var(--fluid-size);
+    margin-block-end: calc(24 * var(--to-rem));
+  }
+  .button {
+    --fluid-min: calc(16 * var(--to-rem));
+    --fluid-max: calc(18 * var(--to-rem));
+    font-size: var(--fluid-size);
+    font-weight: 500;
+    line-height: 1.5;
+    text-decoration: underline;
+    color: var(--color-lime);
+    background-color: var(--color-cobalt);
+  }
+</style>

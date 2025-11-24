@@ -15,7 +15,11 @@ const work = await client.getListDetail({
 });
 ---
 
-<Layout>
+<Layout
+  title={`${work.contents[0].title}｜Takuya Fujikawa Portfolio`}
+  description={work.contents[0].outline}
+  robots="noindex, nofollow"
+>
   <Header />
   <Main>
     <WorkDetail workData={work.contents[0]} />
